@@ -1,34 +1,45 @@
-# bosi-Regression_of_Used_Cars_Price
+# Regression of Used Car Prices  
 
-## Objectives
-This project aims to explore and predict used car prices using machine learning techniques, providing insights into the factors that influence pricing in the automotive market through time. The dataset used contains detailed information about vehicles, including various attributes such as brand, model, year, mileage, and other specifications.
+## Objectives  
+This project aims to explore and predict used car prices using Machine Learning techniques, offering insights into the factors that influence automotive pricing over time. The dataset includes detailed information about vehicles, such as brand, model, year, mileage, and additional specifications, which serve as predictors for car prices.  
 
-## Project Structure
-The goal is to develop a reliable predictive model that can estimate car prices based on the given features. The project involves a systematic workflow for the preparation of the data before giving it to the Machine Learning models:
- - Data Visualization: create plots to analyze the relationship between various features of the dataset and the target variable (price), providing key insights and observations. 
- - Data Preprocessing: remove outliers, extract features from the given ones, fill missing values, remove useless features, scale numerical columns and encode categorical columns.
- - Train Test Split: split the data into train set and test set.
+## Project Structure  
+The goal is to build a reliable predictive model for estimating car prices based on the provided features. The project follows a systematic workflow to prepare the data for machine learning models:  
 
-The evaluation of the models is done through RMSE, checking it on the train and test set to measure performance, but also overfitting.
-Here the models involved:
- - Ridge Regressor
- - Random Forest Regressor
- - Random Forest Regressor using grid search
- - AdaBoost Regressor using Decision Trees
- - AdaBoost Regressor using Random Forest
- - Multi Layer Perceptron Regressor
+- **Data Visualization**: Generate plots to examine the relationships between various features and the target variable (price), uncovering patterns and trends.  
+- **Data Preprocessing**:  
+  - Remove outliers.  
+  - Extract meaningful features.  
+  - Handle missing values.  
+  - Drop irrelevant features.  
+  - Scale numerical columns.  
+  - Encode categorical features.  
+- **Train-Test Split**: Divide the dataset into training and testing subsets to evaluate model performance.  
 
-## Results
-From the training of the models it can be seen as the Random Forest Regressor, with the hyperparameters found with the grid search approach, is the best model, having the lowest Test RMSE and keeping an high Train RMSE, meaning that the model generalize well. Here below the results for each model:
+Model evaluation is conducted using the Root Mean Squared Error (RMSE) metric, which is calculated for both the training and testing datasets. This approach helps measure model accuracy and detect overfitting.  
 
-| Model                        | Train RMSE | Test RMSE |
-|------------------------------|------------|-----------|
-| Ridge Regressor              | 19192      | 18878     |
-| Random Forest Regressor      | 8134       | 17625     |
-| Random Forest Regressor GS   | 15130      | 16518     |
-| Ada Boost Regressor          | 19941      | 19990     |
-| MLP Regressor                | 17049      | 17043     |
-| AdaBoost RF Regressor        | 14433      | 16710     |
+### Machine Learning Models  
+The following models were implemented and evaluated:  
+- Ridge Regressor  
+- Random Forest Regressor  
+- Random Forest Regressor with Grid Search  
+- AdaBoost Regressor with Decision Trees  
+- AdaBoost Regressor with Random Forest  
+- Multi-Layer Perceptron Regressor  
 
-## References
-Link to the Kaggle competition: https://www.kaggle.com/competitions/playground-series-s4e9
+## Results  
+The evaluation reveals that the **Random Forest Regressor**, with hyperparameters optimized via grid search, performs best. It achieves the lowest Test RMSE while maintaining a relatively high Train RMSE, indicating good generalization.  
+
+### Model Performance Metrics  
+
+| Model                        | Train RMSE | Test RMSE |  
+|------------------------------|------------|-----------|  
+| Ridge Regressor              | 19,192     | 18,878    |  
+| Random Forest Regressor      | 8,134      | 17,625    |  
+| Random Forest Regressor (GS) | 15,130     | 16,518    |  
+| AdaBoost Regressor           | 19,941     | 19,990    |  
+| MLP Regressor                | 17,049     | 17,043    |  
+| AdaBoost RF Regressor        | 14,433     | 16,710    |  
+
+## References  
+This project is based on the Kaggle competition: [Playground Series - S4E9](https://www.kaggle.com/competitions/playground-series-s4e9).  
