@@ -13,7 +13,7 @@ The notebook is structured in the following sections:
     - AdaBoost Regressor using Random Forest
     - Multi Layer Perceptron Regressor
 
-# Kaggle References
+# Kaggle Reference
 Link to the Kaggle competition: https://www.kaggle.com/competitions/playground-series-s4e9
 
 # Installation and Startup Notes
