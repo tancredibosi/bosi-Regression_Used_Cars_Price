@@ -42,4 +42,7 @@ The evaluation reveals that the **Random Forest Regressor**, with hyperparameter
 | AdaBoost RF Regressor        | 14,433     | 16,710    |  
 
 ## References  
-This project is based on the Kaggle competition: [Playground Series - S4E9](https://www.kaggle.com/competitions/playground-series-s4e9).  
+This project is based on the Kaggle competition: [Playground Series - S4E9](https://www.kaggle.com/competitions/playground-series-s4e9).
+
+## Author
+Tancredi Bosi
