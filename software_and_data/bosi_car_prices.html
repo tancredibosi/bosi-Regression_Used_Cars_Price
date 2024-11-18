@@ -8794,7 +8794,7 @@ dtype: int64
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">vehicle_age</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
@@ -8817,7 +8817,6 @@ dtype: int64
     <span class="k">return</span> <span class="n">HP</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">cylinder</span>
 
 <span class="k">def</span> <span class="nf">process_transmission_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="c1"># Create a DataFrame of unique transmissions</span>
     <span class="n">data_transmission</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'transmission'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'Transmission'</span><span class="p">])</span>
     
     <span class="c1"># Feature 1: Extract the number of gears</span>
@@ -8830,31 +8829,17 @@ dtype: int64
                   <span class="k">else</span> <span class="s1">'Other'</span>
     <span class="p">)</span>
     
-    <span class="c1"># Concatenate the new features with the original data</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data</span><span class="p">,</span> <span class="n">data_transmission</span><span class="p">[[</span><span class="s1">'speed'</span><span class="p">,</span> <span class="s1">'transmission_type'</span><span class="p">]]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="c1"># Drop the "transmission" column</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'transmission'</span><span class="p">])</span>
     
     <span class="k">return</span> <span class="n">data</span>
 
 <span class="k">def</span> <span class="nf">extract_brand_features</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-
     <span class="n">luxury_brands</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Bugatti'</span><span class="p">,</span> <span class="s1">'Lamborghini'</span><span class="p">,</span> <span class="s1">'McLaren'</span><span class="p">,</span> <span class="s1">'Ferrari'</span><span class="p">,</span> <span class="s1">'Bentley'</span><span class="p">,</span> <span class="s1">'Rolls-Royce'</span><span class="p">,</span> <span class="s1">'Aston'</span><span class="p">,</span> <span class="s1">'Rivian'</span><span class="p">,</span> <span class="s1">'Lucid'</span><span class="p">,</span> <span class="s1">'Maybach'</span><span class="p">,</span> <span class="s1">'Porsche'</span><span class="p">]</span>
     <span class="n">economy_brands</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Toyota'</span><span class="p">,</span> <span class="s1">'Acura'</span><span class="p">,</span> <span class="s1">'FIAT'</span><span class="p">,</span> <span class="s1">'Lotus'</span><span class="p">,</span> <span class="s1">'Mazda'</span><span class="p">,</span> <span class="s1">'Hyundai'</span><span class="p">,</span> <span class="s1">'Nissan'</span><span class="p">,</span> <span class="s1">'Volkswagen'</span><span class="p">,</span> <span class="s1">'Suzuki'</span><span class="p">,</span> <span class="s1">'Subaru'</span><span class="p">,</span> <span class="s1">'Honda'</span><span class="p">,</span> <span class="s1">'Chrysler'</span><span class="p">,</span> <span class="s1">'Plymouth'</span><span class="p">,</span> <span class="s1">'MINI'</span><span class="p">,</span> <span class="s1">'Scion'</span><span class="p">,</span> <span class="s1">'Saturn'</span><span class="p">,</span> <span class="s1">'Mercury'</span><span class="p">,</span> <span class="s1">'Pontiac'</span><span class="p">,</span> <span class="s1">'Hummer'</span><span class="p">,</span> <span class="s1">'Mitsubishi'</span><span class="p">]</span>
+    
     <span class="n">df</span><span class="p">[</span><span class="s1">'luxury_brand'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'brand'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">2</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">luxury_brands</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">economy_brands</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="w">    </span><span class="sd">'''</span>
-<span class="sd">    average_price_per_brand = df.groupby('brand')['price'].mean().reset_index()</span>
-<span class="sd">    overall_average_price = df['price'].mean()</span>
-
-<span class="sd">    # Create brand tier categories (luxury, premium, economy)</span>
-<span class="sd">    luxury_brands = average_price_per_brand[average_price_per_brand['price'] &gt; (1.5 *overall_average_price)]['brand'].tolist()</span>
-<span class="sd">    premium_brands = average_price_per_brand[(average_price_per_brand['price'] &gt; overall_average_price) &amp; (average_price_per_brand['price'] &lt;= (1.5 * overall_average_price))]['brand'].tolist()</span>
-<span class="sd">    economy_brands = average_price_per_brand[(average_price_per_brand['price'] &lt;= overall_average_price) &amp; (average_price_per_brand['price'] &gt; (1/2 * overall_average_price))]['brand'].tolist()</span>
-<span class="sd">    </span>
-<span class="sd">    df['luxury_brand'] = df['brand'].apply(lambda x: 3 if x in luxury_brands else 2 if x in premium_brands else 1 if x in economy_brands else 0)</span>
-<span class="sd">    '''</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'brand'</span><span class="p">])</span>
     
     <span class="k">return</span> <span class="n">df</span>
@@ -10300,7 +10285,7 @@ memory usage: 25.9 MB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_results</span><span class="p">(</span><span class="n">train_rmse</span><span class="p">,</span> <span class="n">test_rmse</span><span class="p">,</span> <span class="n">ytrain</span><span class="p">,</span> <span class="n">ytest</span><span class="p">,</span> <span class="n">ytrainpred</span><span class="p">,</span> <span class="n">ytestpred</span><span class="p">):</span>
@@ -10314,50 +10299,45 @@ memory usage: 25.9 MB
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'RMSE Comparison'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-    <span class="c1"># Plot Predictions vs True Values for Training and Testing sets separately</span>
     <span class="c1"># Determine the y-axis limits for training and test sets</span>
     <span class="n">train_ylim</span> <span class="o">=</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ytrain</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">ytrainpred</span><span class="p">)),</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">ytrain</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ytrainpred</span><span class="p">)))</span>
     <span class="n">test_ylim</span> <span class="o">=</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ytest</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">ytestpred</span><span class="p">)),</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">ytest</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ytestpred</span><span class="p">)))</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 
-    <span class="c1"># 1. Training Set True Values</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ytrain</span><span class="p">)),</span> <span class="n">ytrain</span><span class="p">,</span> <span class="s1">'o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'True Values'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Element'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Value'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Training Set: True Values'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">train_ylim</span><span class="p">)</span>  <span class="c1"># Set y-axis limits for training</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">train_ylim</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
-    <span class="c1"># 2. Training Set Predicted Values</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ytrainpred</span><span class="p">)),</span> <span class="n">ytrainpred</span><span class="p">,</span> <span class="s1">'o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Predicted Values'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Element'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Value'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Training Set: Predicted Values'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">train_ylim</span><span class="p">)</span>  <span class="c1"># Set y-axis limits for training</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">train_ylim</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
-    <span class="c1"># 3. Test Set True Values</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ytest</span><span class="p">)),</span> <span class="n">ytest</span><span class="p">,</span> <span class="s1">'o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'True Values'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Element'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Value'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Test Set: True Values'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">test_ylim</span><span class="p">)</span>  <span class="c1"># Set y-axis limits for test</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">test_ylim</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
-    <span class="c1"># 4. Test Set Predicted Values</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ytestpred</span><span class="p">)),</span> <span class="n">ytestpred</span><span class="p">,</span> <span class="s1">'o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Predicted Values'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Element'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Value'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Test Set: Predicted Values'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">test_ylim</span><span class="p">)</span>  <span class="c1"># Set y-axis limits for test</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">test_ylim</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
@@ -10584,11 +10564,10 @@ Test rmse 17625.011145229026
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [55]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 
 <span class="n">rf_regr</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
 
